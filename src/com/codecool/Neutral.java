@@ -1,3 +1,5 @@
+package com.codecool;
+
 public class Neutral extends Customer {
     private int friendlynessLevel;
     private String favouriteDrink;

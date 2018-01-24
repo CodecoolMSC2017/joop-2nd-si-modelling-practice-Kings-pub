@@ -1,3 +1,5 @@
+package com.codecool;
+
 public class Customer extends Person {
     private String allegience;
     private int happinessLevel;

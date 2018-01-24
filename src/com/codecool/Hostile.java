@@ -1,3 +1,5 @@
+package com.codecool;
+
 public class Hostile extends Customer {
     private int annoyingLevel;
 

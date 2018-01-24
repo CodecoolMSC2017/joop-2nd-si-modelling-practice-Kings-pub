@@ -1,3 +1,5 @@
+package com.codecool;
+
 public class Friendly extends Customer {
     private int funLevel;
 
