@@ -9,18 +9,18 @@ public class Place {
     Neutral[] neutrals;
     Hostile[] hostiles;
     Personnel barista;
-    int capacity;
     Random random = new Random();
+    Night night;
 
 
-    Place(String name,int capacity,String friendlyCsvPath,String neutralCsvPath,String hostileCsvPath) {
+    Place(String name,String friendlyCsvPath,String neutralCsvPath,String hostileCsvPath,Night night) {
         this.name = name;
-        this.capacity = capacity;
         this.friendlies = new Friendly[0];
         this.neutrals = new Neutral[0];
         this.hostiles = new Hostile[0];
-        addToCustomers(friendlyCsvPath);
+        this.night = night;
         addToCustomers(neutralCsvPath);
+        addToCustomers(friendlyCsvPath);
         addToCustomers(hostileCsvPath);
 
     }
@@ -60,17 +60,26 @@ public class Place {
                 if (csvFile == "Friendly.csv") {
                     String[] person = line.split(",");
                     Friendly friendly = new Friendly(person[0],Integer.parseInt(person[1]), person[2],Integer.parseInt(person[3]),Integer.parseInt(person[4]),Integer.parseInt(person[5]),Integer.parseInt(person[6]));
-                    addFriendlyToArray(friendly);
+                    if (random.nextInt(2) == 1 && !night.getGuestList().contains(person[0])) {
+                        addFriendlyToArray(friendly);
+                        night.setGuestList(person[0]);
+                    }
                 }
                 else if (csvFile == "Neutral.csv") {
                     String[] person = line.split(",");
                     Neutral neutral = new Neutral(person[0],Integer.parseInt(person[1]), person[2],Integer.parseInt(person[3]),Integer.parseInt(person[4]),Integer.parseInt(person[5]),person[6]);
-                    addNeutralToArray(neutral);
+                    if (random.nextInt(3) != 0 && !night.getGuestList().contains(person[0])) {
+                        addNeutralToArray(neutral);
+                        night.setGuestList(person[0]);
+                    }
                 }
                 else if (csvFile == "Hostile.csv") {
                     String[] person = line.split(",");
                     Hostile hostile = new Hostile(person[0],Integer.parseInt(person[1]), person[2],Integer.parseInt(person[3]),Integer.parseInt(person[4]),Integer.parseInt(person[5]),Integer.parseInt(person[6]));
-                    addHostileToArray(hostile);
+                    if (random.nextInt(4) == 2 && !night.getGuestList().contains(person[0])) {
+                        addHostileToArray(hostile);
+                        night.setGuestList(person[0]);
+                    }
                 }
             }
         }catch (IOException e) {
