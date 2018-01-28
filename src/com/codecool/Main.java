@@ -10,6 +10,7 @@ public class Main {
             night.save();
     }
 
+
     public static Night load(Night buli) {
         try {
             FileInputStream fileIn = new FileInputStream("../data/save.ser");
@@ -31,24 +32,22 @@ public class Main {
 
 
     public static void main(String[] args) {
-        
+
         Night buli = new Night();
-        buli = load(buli);
-        
-        
-        /*
-        Night buli = new Night();
-        Place mainRoom = new Place("Main room","Friendly.csv","Neutral.csv","Hostile.csv",buli);
-        Place gameRoom = new Place("Gaming room","Friendly.csv","Neutral.csv","Hostile.csv",buli);
-        Place smokeArea = new Place("Smoking area","Friendly.csv","Neutral.csv","Hostile.csv",buli);
-        Place counter = new Place("Counter","Personnel.csv");
-        buli.setMainRoom(mainRoom);
-        buli.setGameRoom(gameRoom);
-        buli.setSmokeArea(smokeArea);
-        buli.setCounter(counter);
-        */
+        UserInterFace ui = new UserInterFace(buli);
+        String choice = userInput.nextLine().toLowerCase();
+
+        if (choice.equals("load")) {
+            buli = load(buli);
+        }
+        else {
+            buli.createNewNight(buli);
+        }
+        //Customer player = new Customer(50,0,5000);
+        ui.displayLocationMenu();
 
         
+
         System.out.println(buli.getCounter().getBarista().getName());
         System.out.println("Cigi");
         System.out.println(buli.getSmokeArea().friendlies.length);
@@ -65,8 +64,8 @@ public class Main {
 
         
         
-        //saveMenu(buli);
-        
+        saveProgress(buli);
+        System.out.println(buli.getPlayer().getName());
         
         System.out.println(buli.getMainRoom().friendlies[0].getName());
 

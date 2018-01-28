@@ -5,6 +5,7 @@ import java.io.*;
 import java.util.Random;
 
 public class Night implements java.io.Serializable {
+    private Customer player;
     private Place mainRoom;
     private Place gameRoom;
     private Place smokeArea;
@@ -13,8 +14,9 @@ public class Night implements java.io.Serializable {
     transient ArrayList<String> guestList = new ArrayList<String>();
 
 
-    public Night(Place mainRoom,Place gameRoom,Place smokeArea,Place counter) {
+    public Night(Customer player,Place mainRoom,Place gameRoom,Place smokeArea,Place counter) {
         this();
+        this.player = player;
         this.mainRoom = mainRoom;
         this.gameRoom = gameRoom;
         this.smokeArea = smokeArea;
@@ -78,6 +80,15 @@ public class Night implements java.io.Serializable {
         return counter;
     }
 
+    public Customer getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Customer player) {
+        this.player = player;
+    }
+
+
     public void save() {
         try {
             FileOutputStream fileOut = new FileOutputStream("../data/save.ser");
@@ -89,5 +100,19 @@ public class Night implements java.io.Serializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-}
+    }  
+
+    public Night createNewNight(Night night) {
+        Customer player = new Customer("Player",25,50,0,5000,"Main Room");
+        Place mainRoom = new Place("Main room","Friendly.csv","Neutral.csv","Hostile.csv",night);
+        Place gameRoom = new Place("Gaming room","Friendly.csv","Neutral.csv","Hostile.csv",night);
+        Place smokeArea = new Place("Smoking area","Friendly.csv","Neutral.csv","Hostile.csv",night);
+        Place counter = new Place("Counter","Personnel.csv");
+        night.setPlayer(player);
+        night.setMainRoom(mainRoom);
+        night.setGameRoom(gameRoom);
+        night.setSmokeArea(smokeArea);
+        night.setCounter(counter);
+        return night;
+    }
 }
