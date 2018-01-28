@@ -12,4 +12,5 @@ public class Personnel extends Person {
     public void setCloseingTime(int newTime) {
         closeingTime = newTime;
     }
+    
 }

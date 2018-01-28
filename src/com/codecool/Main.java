@@ -9,6 +9,10 @@ public class Main {
         Place counter = new Place("Counter","Personnel.csv");
         Night buli = new Night(mainRoom,gameRoom,smokeArea,counter);
 
-        System.out.println(smokeArea.customers.length);
+        System.out.println(smokeArea.friendlies.length);
+        System.out.println(smokeArea.neutrals.length);
+        System.out.println(smokeArea.hostiles.length);
+        System.out.println(counter.barista.getName());
+
     }
 }

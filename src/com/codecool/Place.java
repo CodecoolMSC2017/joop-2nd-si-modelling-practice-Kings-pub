@@ -5,7 +5,9 @@ import java.util.Random;
 
 public class Place {
     String name;
-    Customer[] customers;
+    Friendly[] friendlies;
+    Neutral[] neutrals;
+    Hostile[] hostiles;
     Personnel barista;
     int capacity;
     Random random = new Random();
@@ -14,7 +16,9 @@ public class Place {
     Place(String name,int capacity,String friendlyCsvPath,String neutralCsvPath,String hostileCsvPath) {
         this.name = name;
         this.capacity = capacity;
-        this.customers = new Customer[0];
+        this.friendlies = new Friendly[0];
+        this.neutrals = new Neutral[0];
+        this.hostiles = new Hostile[0];
         addToCustomers(friendlyCsvPath);
         addToCustomers(neutralCsvPath);
         addToCustomers(hostileCsvPath);
@@ -32,7 +36,7 @@ public class Place {
         String line = "";
         try(BufferedReader br = new BufferedReader(new FileReader("../data/" + csvFile))){
             int i = 0;
-            int tonightsBarista = random.nextInt(3);
+            int tonightsBarista = random.nextInt(4);
             while((line = br.readLine()) != null) {
                 String[] person = line.split(",");
                 if (i == tonightsBarista) {
@@ -76,27 +80,28 @@ public class Place {
         }
     }
     public void addFriendlyToArray(Friendly friendly) {
-        Customer[] tempArray = new Friendly[customers.length + 1];
-        for (int i = 0; i < customers.length; i++) {
-            tempArray[i] = customers[i];
+        Friendly[] tempArray = new Friendly[friendlies.length + 1];
+        for (int i = 0; i < friendlies.length; i++) {
+            tempArray[i] = friendlies[i];
         }
         tempArray[tempArray.length - 1] = friendly;
-        customers = tempArray;
+        friendlies = tempArray;
     }
+    
     public void addNeutralToArray(Neutral neutral) {
-        Customer[] tempArray = new Neutral[customers.length + 1];
-        for (int i = 0; i < customers.length; i++) {
-            tempArray[i] = customers[i];
+        Neutral[] tempArray = new Neutral[neutrals.length + 1];
+        for (int i = 0; i < neutrals.length; i++) {
+            tempArray[i] = neutrals[i];
         }
         tempArray[tempArray.length - 1] = neutral;
-        customers = tempArray;
+        neutrals = tempArray;
     }
     public void addHostileToArray(Hostile hostile) {
-        Customer[] tempArray = new Hostile[customers.length + 1];
-        for (int i = 0; i < customers.length; i++) {
-            tempArray[i] = customers[i];
+        Hostile[] tempArray = new Hostile[hostiles.length + 1];
+        for (int i = 0; i < hostiles.length; i++) {
+            tempArray[i] = hostiles[i];
         }
         tempArray[tempArray.length - 1] = hostile;
-        customers = tempArray;
+        hostiles = tempArray;
     }
 }

@@ -9,6 +9,7 @@ public class Night {
     Place smokeArea;
     Place counter;
     private int time;
+    int maxCustomers = 20;
 
     public Night(Place mainRoom,Place gameRoom,Place smokeArea,Place counter) {
         this.mainRoom = mainRoom;
