@@ -1,6 +1,8 @@
 package com.codecool;
 
-public class Person {
+import java.io.*;
+
+public class Person implements java.io.Serializable{
     private String name;
     private int age;
 

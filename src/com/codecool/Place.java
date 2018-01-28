@@ -3,12 +3,12 @@ package com.codecool;
 import java.io.*;
 import java.util.Random;
 
-public class Place {
-    String name;
+public class Place implements java.io.Serializable {
+    private String name;
     Friendly[] friendlies;
     Neutral[] neutrals;
     Hostile[] hostiles;
-    Personnel barista;
+    private Personnel barista;
     Random random = new Random();
     Night night;
 
@@ -29,6 +29,14 @@ public class Place {
         this.name = name;
         this.barista = new Personnel("",0,0);
         baristaFromCsv(barista,personnelCsvPath);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Personnel getBarista() {
+        return barista;
     }
 
 
@@ -76,7 +84,7 @@ public class Place {
                 else if (csvFile == "Hostile.csv") {
                     String[] person = line.split(",");
                     Hostile hostile = new Hostile(person[0],Integer.parseInt(person[1]), person[2],Integer.parseInt(person[3]),Integer.parseInt(person[4]),Integer.parseInt(person[5]),Integer.parseInt(person[6]));
-                    if (random.nextInt(4) == 2 && !night.getGuestList().contains(person[0])) {
+                    if (random.nextInt(5) == 2 && !night.getGuestList().contains(person[0])) {
                         addHostileToArray(hostile);
                         night.setGuestList(person[0]);
                     }
