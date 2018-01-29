@@ -11,7 +11,7 @@ public class Night implements java.io.Serializable {
     private Place smokeArea;
     private Place counter;
     private int time;
-    transient ArrayList<String> guestList = new ArrayList<String>();
+    private ArrayList<String> guestList = new ArrayList<String>();
 
 
     public Night(Customer player,Place mainRoom,Place gameRoom,Place smokeArea,Place counter) {
@@ -101,9 +101,10 @@ public class Night implements java.io.Serializable {
             e.printStackTrace();
         }
     }  
+    
 
     public Night createNewNight(Night night) {
-        Customer player = new Customer("Player",25,50,0,5000,"Main Room");
+        Customer player = new Customer("Player",25,50,0,5000,"main room");
         Place mainRoom = new Place("Main room","Friendly.csv","Neutral.csv","Hostile.csv",night);
         Place gameRoom = new Place("Gaming room","Friendly.csv","Neutral.csv","Hostile.csv",night);
         Place smokeArea = new Place("Smoking area","Friendly.csv","Neutral.csv","Hostile.csv",night);
@@ -114,5 +115,9 @@ public class Night implements java.io.Serializable {
         night.setSmokeArea(smokeArea);
         night.setCounter(counter);
         return night;
+    }
+
+    public void goTo(String location) {
+        getPlayer().setLocation(location);
     }
 }

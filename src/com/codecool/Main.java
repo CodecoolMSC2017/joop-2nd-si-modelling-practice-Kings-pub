@@ -10,7 +10,7 @@ public class Main {
             night.save();
     }
 
-
+    
     public static Night load(Night buli) {
         try {
             FileInputStream fileIn = new FileInputStream("../data/save.ser");
@@ -29,24 +29,30 @@ public class Main {
         }
         return null;
     }
+    
 
 
     public static void main(String[] args) {
 
         Night buli = new Night();
         UserInterFace ui = new UserInterFace(buli);
-        String choice = userInput.nextLine().toLowerCase();
+        String newOrLoad;
 
-        if (choice.equals("load")) {
+        
+        newOrLoad = userInput.nextLine().toLowerCase();
+        if (newOrLoad.equals("load")) {
             buli = load(buli);
         }
         else {
             buli.createNewNight(buli);
         }
-        //Customer player = new Customer(50,0,5000);
-        ui.displayLocationMenu();
 
-        
+        int i = 0;
+        while ( i < 5) {
+            ui.mainMenu(buli);
+            i++;
+
+        }
 
         System.out.println(buli.getCounter().getBarista().getName());
         System.out.println("Cigi");
@@ -61,13 +67,6 @@ public class Main {
         System.out.println(buli.getGameRoom().friendlies.length);
         System.out.println(buli.getGameRoom().neutrals.length);
         System.out.println(buli.getGameRoom().hostiles.length);
-
-        
-        
-        saveProgress(buli);
-        System.out.println(buli.getPlayer().getName());
-        
-        System.out.println(buli.getMainRoom().friendlies[0].getName());
 
 
     }
