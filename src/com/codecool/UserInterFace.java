@@ -15,9 +15,9 @@ public class UserInterFace{
 
     public void mainMenu(Night night) {
         
-        System.out.println(night.getPlayer().getLocation());
         if (night.getPlayer().getLocation().equals("main room")) {
-            System.out.println("(1)Watch soccer on TV (2)Interact with friendly (3)Befriend neutral (4)Chill (5)Go to");
+            listMainRoomObjects(night);
+            System.out.println("\n\n(1)Watch soccer on TV (2)Interact with friendly (3)Befriend neutral (4)Chill (5)Go to");
             choice = userInput.nextLine().toLowerCase();
             if (choice.equals("1")) {
                 System.out.println("under construction");
@@ -32,7 +32,7 @@ public class UserInterFace{
                 System.out.println("under construction");
             }
             else if (choice.equals("5")) {
-                System.out.println("Choose the location to go to: \n Counter, Game Room, Smoking Area, Toilet");
+                System.out.println("\nChoose the location to go to: \n Counter, Game Room, Smoking Area, Toilet");
                 choice = userInput.nextLine().toLowerCase();
                 night.goTo(choice);
             }
@@ -40,7 +40,16 @@ public class UserInterFace{
                 night.save();
             }
             else if (choice.equals(":create")) {
-                System.out.println("under construction");
+                System.out.println("Enter your friends name: ");
+                String friendName = userInput.nextLine();
+                if (!night.getGuestList().contains(friendName)) {
+                    Friendly friend = new Friendly(friendName,25,"friendly",50,0,5000,25);
+                    night.getMainRoom().addFriendlyToArray(friend);
+                    System.out.println("Your friend arrived to the pub!");
+                }
+                else {
+                    System.out.println("Somebody is already in the pub with this name. Give your friend a different nickname.");
+                }
             }
             else if (choice.equals(":list")) {
                 listObjects(night);
@@ -56,7 +65,8 @@ public class UserInterFace{
 
         }
         else if (night.getPlayer().getLocation().equals("counter")) {
-            System.out.println("(1)Drink an alcoholic beverage (2) Drink a non-alcoholic beverage (3)Buy a scratch card (4)Go to");
+            listCounter(night);
+            System.out.println("\n\n(1)Drink an alcoholic beverage (2) Drink a non-alcoholic beverage (3)Buy a scratch card (4)Go to");
             choice = userInput.nextLine().toLowerCase();
             if (choice.equals("1")) {
                 System.out.println("under construction");
@@ -68,7 +78,7 @@ public class UserInterFace{
                 System.out.println("under construction");
             }
             else if (choice.equals("4")) {
-                System.out.println("Choose the location to go to: \n Main Room, Game Room, Smoking Area, Toilet");
+                System.out.println("\nChoose the location to go to: \n Main Room, Game Room, Smoking Area, Toilet");
                 choice = userInput.nextLine().toLowerCase();
                 night.goTo(choice);
             }
@@ -76,7 +86,16 @@ public class UserInterFace{
                 night.save();
             }
             else if (choice.equals(":create")) {
-                System.out.println("under construction");
+                System.out.println("Enter your friends name: ");
+                String friendName = userInput.nextLine();
+                if (!night.getGuestList().contains(friendName)) {
+                    Friendly friend = new Friendly(friendName,25,"friendly",50,0,5000,25);
+                    night.getMainRoom().addFriendlyToArray(friend);
+                    System.out.println("Your friend arrived to the pub!");
+                }
+                else {
+                    System.out.println("Somebody is already in the pub with this name. Give your friend a different nickname.");
+                }
             }
             else if (choice.equals(":list")) {
                 listObjects(night);
@@ -90,7 +109,8 @@ public class UserInterFace{
             }
         }
         else if (night.getPlayer().getLocation().equals("game room")) {
-            System.out.println("(1)Play foosball (2)Play pool (3)Interact with friendly (4)Befriend neutral (5)Chill (6)Go to");
+            listGameRoomObjects(night);
+            System.out.println("\n\n(1)Play foosball (2)Play pool (3)Interact with friendly (4)Befriend neutral (5)Chill (6)Go to");
             choice = userInput.nextLine().toLowerCase();
             if (choice.equals("1")) {
                 System.out.println("under construction");
@@ -108,7 +128,7 @@ public class UserInterFace{
                 System.out.println("under construction");
             }
             else if (choice.equals("6")) {
-                System.out.println("Choose the location to go to: \n Counter, Main Room, Smoking Area, Toilet");
+                System.out.println("\nChoose the location to go to: \n Counter, Main Room, Smoking Area, Toilet");
                 choice = userInput.nextLine().toLowerCase();
                 night.goTo(choice);
             }
@@ -116,7 +136,16 @@ public class UserInterFace{
                 night.save();
             }
             else if (choice.equals(":create")) {
-                System.out.println("under construction");
+                System.out.println("Enter your friends name: ");
+                String friendName = userInput.nextLine();
+                if (!night.getGuestList().contains(friendName)) {
+                    Friendly friend = new Friendly(friendName,25,"friendly",50,0,5000,25);
+                    night.getGameRoom().addFriendlyToArray(friend);
+                    System.out.println("Your friend arrived to the pub!");
+                }
+                else {
+                    System.out.println("Somebody is already in the pub with this name. Give your friend a different nickname.");
+                }
             }
             else if (choice.equals(":list")) {
                 listObjects(night);
@@ -130,7 +159,8 @@ public class UserInterFace{
             }
         }
         else if (night.getPlayer().getLocation().equals("smoking area")) {
-            System.out.println("(1)Smoke (2)Interact with friendly (3)Befriend neutral (4)Chill (5)Go to");
+            listSmokeAreaObjects(night);
+            System.out.println("\n\n(1)Smoke (2)Interact with friendly (3)Befriend neutral (4)Chill (5)Go to");
             choice = userInput.nextLine().toLowerCase();
             if (choice.equals("1")) {
                 System.out.println("under construction");
@@ -145,7 +175,7 @@ public class UserInterFace{
                 System.out.println("under construction");
             }
             else if (choice.equals("5")) {
-                System.out.println("Choose the location to go to: \n Counter, Game Room, Main Room, Toilet");
+                System.out.println("\nChoose the location to go to: \n Counter, Game Room, Main Room, Toilet");
                 choice = userInput.nextLine().toLowerCase();
                 night.goTo(choice);
             }
@@ -153,7 +183,16 @@ public class UserInterFace{
                 night.save();
             }
             else if (choice.equals(":create")) {
-                System.out.println("under construction");
+                System.out.println("Enter your friends name: ");
+                String friendName = userInput.nextLine();
+                if (!night.getGuestList().contains(friendName)) {
+                    Friendly friend = new Friendly(friendName,25,"friendly",50,0,5000,25);
+                    night.getSmokeArea().addFriendlyToArray(friend);
+                    System.out.println("Your friend arrived to the pub!");
+                }
+                else {
+                    System.out.println("Somebody is already in the pub with this name. Give your friend a different nickname.");
+                }
             }
             else if (choice.equals(":list")) {
                 listObjects(night);
@@ -167,6 +206,7 @@ public class UserInterFace{
             }
         }
         else if (night.getPlayer().getLocation().equals("toilet")) {
+            System.out.println("\nToilet");
             System.out.println("(1)Piss (2)Take a dump (3)Wash face (4)Go to");
             choice = userInput.nextLine().toLowerCase();
             if (choice.equals("1")) {
@@ -179,7 +219,7 @@ public class UserInterFace{
                 System.out.println("under construction");
             }
             else if (choice.equals("4")) {
-                System.out.println("Choose the location to go to: \n Counter, Game Room, Smoking Area, Main Room");
+                System.out.println("\nChoose the location to go to: \n Counter, Game Room, Smoking Area, Main Room");
                 choice = userInput.nextLine().toLowerCase();
                 night.goTo(choice);
             }
@@ -187,7 +227,17 @@ public class UserInterFace{
                 night.save();
             }
             else if (choice.equals(":create")) {
-                System.out.println("under construction");
+                System.out.println("\n\nMan,you are weird,inviting your friend to the toilet...");
+                System.out.println("Whatever... Enter your friends name: ");
+                String friendName = userInput.nextLine();
+                if (!night.getGuestList().contains(friendName)) {
+                    Friendly friend = new Friendly(friendName,25,"friendly",50,0,5000,25);
+                    night.getMainRoom().addFriendlyToArray(friend);
+                    System.out.println("Your friend arrived to the pub!");
+                }
+                else {
+                    System.out.println("Somebody is already in the pub with this name. Give your friend a different nickname.");
+                }
             }
             else if (choice.equals(":list")) {
                 listObjects(night);

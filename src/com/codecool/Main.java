@@ -37,8 +37,8 @@ public class Main {
         Night buli = new Night();
         UserInterFace ui = new UserInterFace(buli);
         String newOrLoad;
-
         
+        System.out.println("Welcome to Kings pub!Would you want to (load) a previous game or start a (new) one?");
         newOrLoad = userInput.nextLine().toLowerCase();
         if (newOrLoad.equals("load")) {
             buli = load(buli);
@@ -47,27 +47,9 @@ public class Main {
             buli.createNewNight(buli);
         }
 
-        int i = 0;
-        while ( i < 5) {
+        while ( buli.getTime() < buli.getCounter().getBarista().getCloseingTime()) {
             ui.mainMenu(buli);
-            i++;
-
         }
-
-        System.out.println(buli.getCounter().getBarista().getName());
-        System.out.println("Cigi");
-        System.out.println(buli.getSmokeArea().friendlies.length);
-        System.out.println(buli.getSmokeArea().neutrals.length);
-        System.out.println(buli.getSmokeArea().hostiles.length);
-        System.out.println("Fő");
-        System.out.println(buli.getMainRoom().friendlies.length);
-        System.out.println(buli.getMainRoom().neutrals.length);
-        System.out.println(buli.getMainRoom().hostiles.length);
-        System.out.println("Kanape");
-        System.out.println(buli.getGameRoom().friendlies.length);
-        System.out.println(buli.getGameRoom().neutrals.length);
-        System.out.println(buli.getGameRoom().hostiles.length);
-
 
     }
 }
