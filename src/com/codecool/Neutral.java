@@ -10,4 +10,8 @@ public class Neutral extends Customer {
         this.favouriteDrink = favouriteDrink;
         friendlynessLevel = 0;
     }
+
+    public String getFavDrink() {
+        return favouriteDrink;
+    }
 }

@@ -32,7 +32,7 @@ public class UserInterFace{
                 System.out.println("under construction");
             }
             else if (choice.equals("5")) {
-                System.out.println("\nChoose the location to go to: \n Counter, Game Room, Smoking Area, Toilet");
+                System.out.println("\nChoose the location to go to: \n Counter, Game Room, Smoking Area, Toilet\nPress anything else to return.");
                 choice = userInput.nextLine().toLowerCase();
                 night.goTo(choice);
             }
@@ -59,7 +59,21 @@ public class UserInterFace{
                 System.exit(-1);
             }
             else if (choice.equals(":find")) {
-                System.out.println("under construction");
+                String customer = userInput.nextLine();
+                Customer found = night.getCustomerByName(customer);
+                
+                if (found != null) {
+                    System.out.println("\n\nCustomer found!");
+                    System.out.println("\tName: " + found.getName());
+                    System.out.println("\tAge: " + found.getAge());
+                    System.out.println("\tAllegience: " + found.getAllegience());
+                    System.out.println("\tDrunkness: " + found.getDrunkness());
+                    System.out.println("\tHappiness: " + found.getHappinessLevel());
+                    
+                }
+                else {
+                    System.out.println("Sorry, " + customer + " wasn't found tonight.");
+                }
             }
             
 
@@ -78,7 +92,7 @@ public class UserInterFace{
                 System.out.println("under construction");
             }
             else if (choice.equals("4")) {
-                System.out.println("\nChoose the location to go to: \n Main Room, Game Room, Smoking Area, Toilet");
+                System.out.println("\nChoose the location to go to: \n Main Room, Game Room, Smoking Area, Toilet\nPress anything else to return.");
                 choice = userInput.nextLine().toLowerCase();
                 night.goTo(choice);
             }
@@ -105,7 +119,21 @@ public class UserInterFace{
                 System.exit(-1);
             }
             else if (choice.equals(":find")) {
-                System.out.println("under construction");
+                String customer = userInput.nextLine();
+                Customer found = night.getCustomerByName(customer);
+                
+                if (found != null) {
+                    System.out.println("\n\nCustomer found!");
+                    System.out.println("\tName: " + found.getName());
+                    System.out.println("\tAge: " + found.getAge());
+                    System.out.println("\tAllegience: " + found.getAllegience());
+                    System.out.println("\tDrunkness: " + found.getDrunkness());
+                    System.out.println("\tHappiness: " + found.getHappinessLevel());
+                    
+                }
+                else {
+                    System.out.println("Sorry, " + customer + " wasn't found tonight.");
+                }
             }
         }
         else if (night.getPlayer().getLocation().equals("game room")) {
@@ -128,7 +156,7 @@ public class UserInterFace{
                 System.out.println("under construction");
             }
             else if (choice.equals("6")) {
-                System.out.println("\nChoose the location to go to: \n Counter, Main Room, Smoking Area, Toilet");
+                System.out.println("\nChoose the location to go to: \n Counter, Main Room, Smoking Area, Toilet\nPress anything else to return.");
                 choice = userInput.nextLine().toLowerCase();
                 night.goTo(choice);
             }
@@ -155,7 +183,21 @@ public class UserInterFace{
                 System.exit(-1);
             }
             else if (choice.equals(":find")) {
-                System.out.println("under construction");
+                String customer = userInput.nextLine();
+                Customer found = night.getCustomerByName(customer);
+                
+                if (found != null) {
+                    System.out.println("\n\nCustomer found!");
+                    System.out.println("\tName: " + found.getName());
+                    System.out.println("\tAge: " + found.getAge());
+                    System.out.println("\tAllegience: " + found.getAllegience());
+                    System.out.println("\tDrunkness: " + found.getDrunkness());
+                    System.out.println("\tHappiness: " + found.getHappinessLevel());
+                    
+                }
+                else {
+                    System.out.println("Sorry, " + customer + " wasn't found tonight.");
+                }
             }
         }
         else if (night.getPlayer().getLocation().equals("smoking area")) {
@@ -175,7 +217,7 @@ public class UserInterFace{
                 System.out.println("under construction");
             }
             else if (choice.equals("5")) {
-                System.out.println("\nChoose the location to go to: \n Counter, Game Room, Main Room, Toilet");
+                System.out.println("\nChoose the location to go to: \n Counter, Game Room, Main Room, Toilet\nPress anything else to return.");
                 choice = userInput.nextLine().toLowerCase();
                 night.goTo(choice);
             }
@@ -202,7 +244,21 @@ public class UserInterFace{
                 System.exit(-1);
             }
             else if (choice.equals(":find")) {
-                System.out.println("under construction");
+                String customer = userInput.nextLine();
+                Customer found = night.getCustomerByName(customer);
+                
+                if (found != null) {
+                    System.out.println("\n\nCustomer found!");
+                    System.out.println("\tName: " + found.getName());
+                    System.out.println("\tAge: " + found.getAge());
+                    System.out.println("\tAllegience: " + found.getAllegience());
+                    System.out.println("\tDrunkness: " + found.getDrunkness());
+                    System.out.println("\tHappiness: " + found.getHappinessLevel());
+                    
+                }
+                else {
+                    System.out.println("Sorry, " + customer + " wasn't found tonight.");
+                }
             }
         }
         else if (night.getPlayer().getLocation().equals("toilet")) {
@@ -210,16 +266,36 @@ public class UserInterFace{
             System.out.println("(1)Piss (2)Take a dump (3)Wash face (4)Go to");
             choice = userInput.nextLine().toLowerCase();
             if (choice.equals("1")) {
-                System.out.println("under construction");
+                System.out.println("Ahh,what a relief.");
+                System.out.print("\nYour drunkness lowered from " + night.getPlayer().getDrunkness());
+                if (night.getPlayer().getDrunkness() < 5) {
+                    night.getPlayer().setDrunknessToZero();
+                }
+                else {
+                    night.getPlayer().setDrunkness(-5);
+                }
+                System.out.print(" to " + night.getPlayer().getDrunkness() + "\n");
             }
             else if (choice.equals("2")) {
-                System.out.println("under construction");
+                System.out.println("You are brave.....or just crazy?\n" +
+                "Congrats,you got 'kétoldali seggtifusz' from the pubs infected toilet.\n" +
+                "You should see a doctor soon!");
+                night.getPlayer().setHappinessLevel(-10);
+                System.out.println("\nYour happyness lowered from " + (night.getPlayer().getHappinessLevel()+10) + " to " + 
+                night.getPlayer().getHappinessLevel() + "\n");
             }
             else if (choice.equals("3")) {
-                System.out.println("under construction");
+                System.out.print("\nYour drunkness lowered from " + night.getPlayer().getDrunkness());
+                if (night.getPlayer().getDrunkness() < 10) {
+                    night.getPlayer().setDrunknessToZero();
+                }
+                else {
+                    night.getPlayer().setDrunkness(-10);
+                }
+                System.out.print(" to " + night.getPlayer().getDrunkness() + "\n");
             }
             else if (choice.equals("4")) {
-                System.out.println("\nChoose the location to go to: \n Counter, Game Room, Smoking Area, Main Room");
+                System.out.println("\nChoose the location to go to: \n Counter, Game Room, Smoking Area, Main Room\nPress anything else to return.");
                 choice = userInput.nextLine().toLowerCase();
                 night.goTo(choice);
             }
@@ -247,7 +323,21 @@ public class UserInterFace{
                 System.exit(-1);
             }
             else if (choice.equals(":find")) {
-                System.out.println("under construction");
+                String customer = userInput.nextLine();
+                Customer found = night.getCustomerByName(customer);
+                
+                if (found != null) {
+                    System.out.println("\n\nCustomer found!");
+                    System.out.println("\tName: " + found.getName());
+                    System.out.println("\tAge: " + found.getAge());
+                    System.out.println("\tAllegience: " + found.getAllegience());
+                    System.out.println("\tDrunkness: " + found.getDrunkness());
+                    System.out.println("\tHappiness: " + found.getHappinessLevel());
+                    
+                }
+                else {
+                    System.out.println("Sorry, " + customer + " wasn't found tonight.");
+                }
             }
         }
     }

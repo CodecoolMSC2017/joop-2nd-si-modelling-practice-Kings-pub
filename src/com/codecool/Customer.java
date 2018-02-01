@@ -39,6 +39,10 @@ public class Customer extends Person {
         drunkness += alcohol;
     }
 
+    public void setDrunknessToZero() {
+        drunkness = 0;
+    }
+
     public int getMoneyAmount() {
         return moneyAmount;
     }
@@ -53,5 +57,9 @@ public class Customer extends Person {
 
     public void setLocation(String newLocation) {
         location = newLocation;
+    }
+
+    public String getAllegience() {
+        return allegience;
     }
 }

@@ -88,6 +88,56 @@ public class Night implements java.io.Serializable {
         this.player = player;
     }
 
+    public Customer getCustomerByName(String name) {
+        Customer phantom = null;
+        for (int i = 0;i < mainRoom.friendlies.length;i++) {
+            if (mainRoom.friendlies[i].getName().toLowerCase().equals(name.toLowerCase())) {
+                return mainRoom.friendlies[i];
+            }
+        }
+        for (int i = 0;i < mainRoom.neutrals.length;i++) {
+            if (mainRoom.neutrals[i].getName().toLowerCase().equals(name.toLowerCase())) {
+                return mainRoom.neutrals[i];
+            }
+        }
+        for (int i = 0;i < mainRoom.hostiles.length;i++) {
+            if (mainRoom.hostiles[i].getName().toLowerCase().equals(name.toLowerCase())) {
+                return mainRoom.hostiles[i];
+            }
+        }
+        for (int i = 0;i < gameRoom.friendlies.length;i++) {
+            if (gameRoom.friendlies[i].getName().toLowerCase().equals(name.toLowerCase())) {
+                return gameRoom.friendlies[i];
+            }
+        }
+        for (int i = 0;i < gameRoom.neutrals.length;i++) {
+            if (gameRoom.neutrals[i].getName().toLowerCase().equals(name.toLowerCase())) {
+                return gameRoom.neutrals[i];
+            }
+        }
+        for (int i = 0;i < gameRoom.hostiles.length;i++) {
+            if (gameRoom.hostiles[i].getName().toLowerCase().equals(name.toLowerCase())) {
+                return gameRoom.hostiles[i];
+            }
+        }
+        for (int i = 0;i < smokeArea.friendlies.length;i++) {
+            if (smokeArea.friendlies[i].getName().toLowerCase().equals(name.toLowerCase())) {
+                return smokeArea.friendlies[i];
+            }
+        }
+        for (int i = 0;i < smokeArea.neutrals.length;i++) {
+            if (smokeArea.neutrals[i].getName().toLowerCase().equals(name.toLowerCase())) {
+                return smokeArea.neutrals[i];
+            }
+        }
+        for (int i = 0;i < smokeArea.hostiles.length;i++) {
+            if (smokeArea.hostiles[i].getName().toLowerCase().equals(name.toLowerCase())) {
+                return smokeArea.hostiles[i];
+            }  
+        }
+        return phantom;
+    }
+
 
     public void save() {
         try {
