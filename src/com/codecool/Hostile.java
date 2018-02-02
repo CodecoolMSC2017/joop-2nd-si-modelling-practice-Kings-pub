@@ -8,4 +8,8 @@ public class Hostile extends Customer {
         super(name,age,allegience,happinessLevel,drunkness,moneyAmount);
         this.annoyingLevel = annoyingLevel;
     }
+
+    public int getAnnoyingLevel() {
+        return annoyingLevel;
+    }
 }

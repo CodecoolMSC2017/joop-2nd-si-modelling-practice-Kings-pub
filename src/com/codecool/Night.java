@@ -2,7 +2,6 @@ package com.codecool;
 
 import java.util.*;
 import java.io.*;
-import java.util.Random;
 
 public class Night implements java.io.Serializable {
     private Customer player;
@@ -169,5 +168,6 @@ public class Night implements java.io.Serializable {
 
     public void goTo(String location) {
         getPlayer().setLocation(location);
+        setTime(1);
     }
 }

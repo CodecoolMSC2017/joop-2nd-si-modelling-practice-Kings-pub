@@ -4,10 +4,12 @@ import java.io.*;
 import java.util.*;
 
 
+
 public class UserInterFace{
     Scanner userInput = new Scanner(System.in);
     Night night;
     String choice;
+    String roomList = ("main room gaming room smoking area toilet counter");
 
     public UserInterFace(Night night) {
         this.night = night;
@@ -34,7 +36,10 @@ public class UserInterFace{
             else if (choice.equals("5")) {
                 System.out.println("\nChoose the location to go to: \n Counter, Game Room, Smoking Area, Toilet\nPress anything else to return.");
                 choice = userInput.nextLine().toLowerCase();
-                night.goTo(choice);
+                if (roomList.contains(choice)) {
+                    night.goTo(choice);
+                }
+                
             }
             else if (choice.equals(":save")) {
                 night.save();
@@ -74,6 +79,9 @@ public class UserInterFace{
                 else {
                     System.out.println("Sorry, " + customer + " wasn't found tonight.");
                 }
+            }
+            else if (choice.equals(":time")) {
+                System.out.println("You look at the clock.The time is: " + convertTime(night.getTime()));
             }
             
 
@@ -94,7 +102,9 @@ public class UserInterFace{
             else if (choice.equals("4")) {
                 System.out.println("\nChoose the location to go to: \n Main Room, Game Room, Smoking Area, Toilet\nPress anything else to return.");
                 choice = userInput.nextLine().toLowerCase();
-                night.goTo(choice);
+                if (roomList.contains(choice)) {
+                    night.goTo(choice);
+                }
             }
             else if (choice.equals(":save")) {
                 night.save();
@@ -134,6 +144,9 @@ public class UserInterFace{
                 else {
                     System.out.println("Sorry, " + customer + " wasn't found tonight.");
                 }
+            }
+            else if (choice.equals(":time")) {
+                System.out.println("You look at the clock.The time is: " + convertTime(night.getTime()));
             }
         }
         else if (night.getPlayer().getLocation().equals("game room")) {
@@ -158,7 +171,9 @@ public class UserInterFace{
             else if (choice.equals("6")) {
                 System.out.println("\nChoose the location to go to: \n Counter, Main Room, Smoking Area, Toilet\nPress anything else to return.");
                 choice = userInput.nextLine().toLowerCase();
-                night.goTo(choice);
+                if (roomList.contains(choice)) {
+                    night.goTo(choice);
+                }
             }
             else if (choice.equals(":save")) {
                 night.save();
@@ -199,13 +214,33 @@ public class UserInterFace{
                     System.out.println("Sorry, " + customer + " wasn't found tonight.");
                 }
             }
+            else if (choice.equals(":time")) {
+                System.out.println("You look at the clock.The time is: " + convertTime(night.getTime()));
+            }
         }
         else if (night.getPlayer().getLocation().equals("smoking area")) {
             listSmokeAreaObjects(night);
             System.out.println("\n\n(1)Smoke (2)Interact with friendly (3)Befriend neutral (4)Chill (5)Go to");
             choice = userInput.nextLine().toLowerCase();
             if (choice.equals("1")) {
-                System.out.println("under construction");
+                if (night.getSmokeArea().hostiles.length > 0) {
+                    System.out.println(night.getSmokeArea().hostiles[0].getName() + " comes to you:\n\tHe tesa adj mán cigit,ne legyél má sóher.");
+                    night.getPlayer().setHappinessLevel(-(night.getSmokeArea().hostiles[0].getAnnoyingLevel()));
+                    System.out.println("\nYour happyness lowered from " + (night.getPlayer().getHappinessLevel()+(night.getSmokeArea().hostiles[0].getAnnoyingLevel())) + " to " + 
+                    night.getPlayer().getHappinessLevel() + "\n");
+                }
+                else {
+                    System.out.print("\nYour drunkness lowered from " + night.getPlayer().getDrunkness());
+                    if (night.getPlayer().getDrunkness() < 5) {
+                        night.getPlayer().setDrunknessToZero();
+                    }
+                    else {
+                        night.getPlayer().setDrunkness(-5);
+                    }
+                    System.out.print(" to " + night.getPlayer().getDrunkness() + "\n");
+
+                }
+                night.setTime(10);
             }
             else if (choice.equals("2")) {
                 System.out.println("under construction");
@@ -219,7 +254,9 @@ public class UserInterFace{
             else if (choice.equals("5")) {
                 System.out.println("\nChoose the location to go to: \n Counter, Game Room, Main Room, Toilet\nPress anything else to return.");
                 choice = userInput.nextLine().toLowerCase();
-                night.goTo(choice);
+                if (roomList.contains(choice)) {
+                    night.goTo(choice);
+                }
             }
             else if (choice.equals(":save")) {
                 night.save();
@@ -259,6 +296,10 @@ public class UserInterFace{
                 else {
                     System.out.println("Sorry, " + customer + " wasn't found tonight.");
                 }
+                
+            }
+            else if (choice.equals(":time")) {
+                System.out.println("You look at the clock.The time is: " + convertTime(night.getTime()));
             }
         }
         else if (night.getPlayer().getLocation().equals("toilet")) {
@@ -275,14 +316,16 @@ public class UserInterFace{
                     night.getPlayer().setDrunkness(-5);
                 }
                 System.out.print(" to " + night.getPlayer().getDrunkness() + "\n");
+                night.setTime(2);
             }
             else if (choice.equals("2")) {
                 System.out.println("You are brave.....or just crazy?\n" +
                 "Congrats,you got 'kétoldali seggtifusz' from the pubs infected toilet.\n" +
                 "You should see a doctor soon!");
-                night.getPlayer().setHappinessLevel(-10);
-                System.out.println("\nYour happyness lowered from " + (night.getPlayer().getHappinessLevel()+10) + " to " + 
+                night.getPlayer().setHappinessLevel(-25);
+                System.out.println("\nYour happyness lowered from " + (night.getPlayer().getHappinessLevel()+25) + " to " + 
                 night.getPlayer().getHappinessLevel() + "\n");
+                night.setTime(30);
             }
             else if (choice.equals("3")) {
                 System.out.print("\nYour drunkness lowered from " + night.getPlayer().getDrunkness());
@@ -293,11 +336,14 @@ public class UserInterFace{
                     night.getPlayer().setDrunkness(-10);
                 }
                 System.out.print(" to " + night.getPlayer().getDrunkness() + "\n");
+                night.setTime(5);
             }
             else if (choice.equals("4")) {
                 System.out.println("\nChoose the location to go to: \n Counter, Game Room, Smoking Area, Main Room\nPress anything else to return.");
                 choice = userInput.nextLine().toLowerCase();
-                night.goTo(choice);
+                if (roomList.contains(choice)) {
+                    night.goTo(choice);
+                }
             }
             else if (choice.equals(":save")) {
                 night.save();
@@ -339,7 +385,25 @@ public class UserInterFace{
                     System.out.println("Sorry, " + customer + " wasn't found tonight.");
                 }
             }
+            else if (choice.equals(":time")) {
+                System.out.println("You look at the clock.The time is: " + convertTime(night.getTime()));
+            }
         }
+    }
+
+    public String convertTime(int time) {
+        String timeFormat = "00:00";
+        int h = time/60 + Integer.parseInt(timeFormat.substring(0,1));
+        int m = time%60 + Integer.parseInt(timeFormat.substring(3,4));
+        if (time%60 < 10) {
+            String newTime = h + ":0" + m;
+            return newTime;
+        }
+        else {
+            String newTime = h + ":" + m;
+            return newTime;
+        }
+            
     }
 
     public void listObjects(Night night) {
